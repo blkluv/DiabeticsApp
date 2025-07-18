@@ -1,4 +1,3 @@
-import Image from "next/image";
 import SearchBar from "./components/SearchBar";
 import TableComponent from "./components/Table";
 import {Table} from "./classes/interfaces";

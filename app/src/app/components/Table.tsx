@@ -15,12 +15,12 @@ export default function TableComponent({table} : TableProps)  {
           </tr>
         </thead>
         <tbody>
-          {table.rows.map((row) => {
+          {table.rows.map((row, rowIndex) => {
             return (
-              <tr>
-                {row.columns.map((col) => {
+              <tr key={rowIndex}>
+                {row.columns.map((col, colIndex) => {
                   return (
-                    <td>{col.value}</td>
+                    <td key={colIndex}>{col.value}</td>
                   )
                 })}
               </tr>
