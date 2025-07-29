@@ -6,7 +6,7 @@ export const API_ID = process.env.API_ID;
 
 export const API_URL = `${HOST}/api`; 
 
-const fetchData = async (url) => {
+export const fetchData = async (url) => {
   try {
     var options = {
             'method': 'GET',

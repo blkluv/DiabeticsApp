@@ -40,12 +40,12 @@ export default function SearchBarComponent({setSearch, setResults} : SearchBarCo
     })
   }
   return (
-    <div className="d-inline">
       <form action={searchAPI}>
-        <Label htmlFor="search">Search</Label>
-        <Input type="search" id="search" name="search"/>
+        <div className="flex w-full max-w-lg items-center gap-2 m-auto">
+        <Input type="search" id="search" name="search" placeholder="Search"/>
         <Button type="submit">Submit</Button>
+        </div>
+        
       </form>
-    </div>
   );
 }
