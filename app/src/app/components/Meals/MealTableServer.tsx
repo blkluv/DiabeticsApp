@@ -1,4 +1,7 @@
-import MealTableClient from "./MealTableClient"
+import MealTableClient from "./MealTableClient";
+import * as dbConnection from "../../api/database"
+import {Food, Meal} from "../../classes/types";
+
 async function getData() {
   return [
     {
@@ -31,9 +34,9 @@ async function getData() {
 }
 
 export default async function MealTable() {
-  const data : Meal[] = await getData();
-
+  const meals = await dbConnection.fetchMeals();
+    
   return (
-    <MealTableClient data={data} />
+    <MealTableClient data={meals} />
   );
 }

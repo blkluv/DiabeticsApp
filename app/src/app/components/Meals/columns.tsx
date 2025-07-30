@@ -1,6 +1,7 @@
 // columns.jsx
 "use client";
 
+import { Meal } from "@/app/classes/types";
 import { Button } from "@/components/ui/button";
 import { ColumnDef } from "@tanstack/react-table";
 
@@ -31,7 +32,7 @@ export const getColumns = (handleAdd: (meal: Meal) => void): ColumnDef<Meal>[] =
     cell: ({row}) => (
         <ul>
             {row.original.food.map((item) => (
-                <li key={item._id}>{item.food_name}</li>
+                <li key={item._id.toString()}>{item.food_name}</li>
             ))}
         </ul>
     )
