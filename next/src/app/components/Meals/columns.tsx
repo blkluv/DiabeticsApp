@@ -1,7 +1,7 @@
 // columns.jsx
 "use client";
 
-import { Meal } from "@/app/models/types";
+import { Meal } from "../../models/meals";
 import { Button } from "@/components/ui/button";
 import { ColumnDef } from "@tanstack/react-table";
 
@@ -16,7 +16,7 @@ export const getColumns = (handleAdd: (meal: Meal) => void): ColumnDef<Meal>[] =
   {
     accessorKey: "insulin",
     header: "Insulin",
-    accessorFn: row => `${row.total/7}`
+    accessorFn: row => `${row.total_carbs/7}`
   },
   {
     accessorKey: "total",
@@ -31,8 +31,8 @@ export const getColumns = (handleAdd: (meal: Meal) => void): ColumnDef<Meal>[] =
     header: "Food Items",
     cell: ({row}) => (
         <ul>
-            {row.original.food.map((item) => (
-                <li key={item._id.toString()}>{item.food_name}</li>
+            {row.original.food_item_ids.map((item) => (
+                <li key={item.toString()}>{item.toString()}</li>
             ))}
         </ul>
     )

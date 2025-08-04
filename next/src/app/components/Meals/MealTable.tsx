@@ -3,7 +3,7 @@
 import { useMemo } from 'react';
 import { getColumns } from './columns'; // Adjust the import path as needed
 import { DataTable } from '../Datatable';
-import { Meal } from '../../models/interfaces';
+import { Meal } from '../../models/meals';
 
 
 interface DataTableProps {

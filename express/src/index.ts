@@ -6,7 +6,9 @@ import dotenv from 'dotenv';
 dotenv.config({ path: '.env.local' });
 
 const app = express()
-const port = 3000
+const cors = require('cors');
+const port = process.env.PORT || 8080;
+app.use(cors());
 
 connectToDatabase()
     .then(() => {
