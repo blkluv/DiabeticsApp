@@ -14,10 +14,18 @@ constructor(
 ) {}
 }
 export class Meal {
+    public insulin?: number;
 constructor(
     public name: string, 
     public total_carbs: number, 
-    public food_item_ids: ObjectId[], 
+    public food_items: Food[], 
     public id?: ObjectId
 ) {}
+}
+
+export class Total{
+    constructor(
+        public carbs: number,
+        public insulin: number
+    ){}
 }

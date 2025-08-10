@@ -1,5 +1,5 @@
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import {Table as TableType, UserData}  from "../models/interfaces";
+import {Table as TableType, UserData}  from "../models/user";
 
 
 interface TableProps {

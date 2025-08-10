@@ -10,14 +10,15 @@ constructor(
     public serving_weight_grams: number,
     public nf_total_carbohydrate: number,
     public nf_sugars: number,
-    public id?: ObjectId
+    public _id: ObjectId
 ) {}
 }
 export class Meal {
+    public food_items?: Food[];
 constructor(
     public name: string, 
     public total_carbs: number, 
     public food_item_ids: ObjectId[], 
-    public id?: ObjectId
+    public _id: ObjectId
 ) {}
 }

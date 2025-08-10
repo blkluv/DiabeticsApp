@@ -2,7 +2,7 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Table } from "../models/interfaces";
+import { Table } from "../models/user";
 interface SearchBarComponentProps {
   setSearch: (search: string) => void;
   setResults: (table: Table) => void;

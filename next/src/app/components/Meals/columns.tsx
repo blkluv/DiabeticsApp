@@ -10,17 +10,18 @@ export const getColumns = (handleAdd: (meal: Meal) => void): ColumnDef<Meal>[] =
     accessorKey: "add",
     header: "Add",
     cell: ({ row }) => (
-      <Button onClick={() => handleAdd(row.original)}>Add</Button>
+      <Button onClick={() => handleAdd(row.original)}>+</Button>
     ),
   },
   {
     accessorKey: "insulin",
     header: "Insulin",
-    accessorFn: row => `${row.total_carbs/7}`
+    accessorFn: row => `${row.insulin ?? (row.total_carbs/7).toFixed(2)}`
   },
   {
     accessorKey: "total",
     header: "Total",
+    accessorFn: row => row.total_carbs
   },
   {
     accessorKey: "name",
@@ -31,8 +32,8 @@ export const getColumns = (handleAdd: (meal: Meal) => void): ColumnDef<Meal>[] =
     header: "Food Items",
     cell: ({row}) => (
         <ul>
-            {row.original.food_item_ids.map((item) => (
-                <li key={item.toString()}>{item.toString()}</li>
+            {row.original.food_items.map((item) => (
+                <li key={item.food_name}>{item.food_name}</li>
             ))}
         </ul>
     )
