@@ -13,6 +13,7 @@ interface DataTableProps {
 
 
 export default function MealTable({ data, addTotal }: DataTableProps) {
+
   const columns = useMemo(() => getColumns((meal: Meal) => {
     addTotal(meal)
     console.log("Add button clicked for meal:", meal);
