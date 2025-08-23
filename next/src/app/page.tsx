@@ -10,7 +10,12 @@ import { User } from "./models/user";
 import { FaBowlFood , FaBurger} from "react-icons/fa6";
 import { Button } from "@/components/ui/button";
 import { UserProvider } from "./components/UserContext";
-
+import {
+  Dialog,
+  DialogTrigger,
+} from "@/components/ui/dialog"
+import FormComponent from "./components/Form";
+import SideActions from "./components/SideActions";
 export default function Home() {
 
   const [meals, setMeals] = useState<Meal[]>([{name:'',total_carbs:0,food_items: []}]);
@@ -69,10 +74,7 @@ export default function Home() {
           </div>
           
         </div>
-        <div id="actions-menu">
-          <Button className="menu-button" id="createMealBtn"><FaBurger /></Button>
-            <Button className="menu-button" id="createMealBtn"><FaBowlFood /></Button>
-          </div>
+        <SideActions/>
         <TotalComponent total={total} clearTotal={clearTotal}/>
         </UserProvider>
     </div>

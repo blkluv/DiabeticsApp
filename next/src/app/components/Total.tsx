@@ -9,7 +9,7 @@ export default function TotalComponent({total, clearTotal} : {total: Total, clea
 
   
   return (
-     <div className="absolute bottom-0 left-0 bg-primary w-full h-1/5">
+     <div className="fixed bottom-0 left-0 bg-primary w-full h-1/5">
         <div className="mt-2 mx-10 mb-5 flex justify-between">
             <span className="text-2xl font-semibold">Total</span>
             <Button onClick={() => clearTotal()} variant="secondary">Clear</Button>
