@@ -8,16 +8,17 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog"
 import { useState } from "react";
+import FoodForm from "./Forms/FoodForm";
 
 enum FormType {
     Food,
     Meal
 }
 export default function SideActions() {
-    const [dialogOpen, setDialogOpen] = useState(false)
-    const [formFields, setFormFields] = useState({})
+    const [dialogOpen, setDialogOpen] = useState(true)
+    const [formType, setFormType] = useState<FormType>(FormType.Food)
     function setForm(type:FormType){
-        console.log(type)
+        setFormType(type);
         setDialogOpen(prevOpen => !prevOpen)
     }
   
@@ -30,12 +31,9 @@ export default function SideActions() {
     <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
         <DialogContent>
             <DialogHeader>
-            <DialogTitle>Are you absolutely sure?</DialogTitle>
-            <DialogDescription>
-                This action cannot be undone. This will permanently delete your account
-                and remove your data from our servers.
-            </DialogDescription>
+            <DialogTitle>{formType === FormType.Food ? "Create Food Item" : "Create Meal"}</DialogTitle>
             </DialogHeader>
+            {formType === FormType.Food && <FoodForm/>}
         </DialogContent>
     </Dialog>
     </>
