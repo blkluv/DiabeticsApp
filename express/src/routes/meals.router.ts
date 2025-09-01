@@ -6,7 +6,7 @@ import { ObjectId } from "mongoose";
 export const mealsRouter = express.Router();
 
 mealsRouter.use(express.json());
-
+// Get meals all
 mealsRouter.get("/", async (_req: Request, res: Response) => {
     try {
         
@@ -27,4 +27,31 @@ mealsRouter.get("/", async (_req: Request, res: Response) => {
     } catch (error) {
         res.status(500).send(error instanceof Error ? error.message : 'An unknown error occurred');
     }
+});
+
+// Create new food item
+// Add a new document to the collection
+mealsRouter.post("/food/", async (req, res) => {
+    try{
+        if(!req.body){
+
+        }
+        let collection = await collections.food;
+        if(collection){
+            let newDocument = req.body;
+            // TODO: validation (sanitize input using validator library)
+            
+            let result = await collection.insertOne(newDocument);
+            res.send(result).status(204);
+        }
+        else{
+            throw new Error("Collection was not found.")
+        }
+    }
+    catch(error){
+       res.status(500).send(error instanceof Error ? error.message : 'An unknown error occurred');
+    }
+  
+  
+  
 });
