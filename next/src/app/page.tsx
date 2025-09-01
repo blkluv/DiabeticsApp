@@ -16,6 +16,8 @@ import {
 } from "@/components/ui/dialog"
 import FormComponent from "./components/Form";
 import SideActions from "./components/SideActions";
+
+
 export default function Home() {
 
   const [meals, setMeals] = useState<Meal[]>([{name:'',total_carbs:0,food_items: []}]);
@@ -26,6 +28,7 @@ export default function Home() {
 
  // Get meals and user data, applying carbratio to meals
   useEffect(() => {
+    console.log(process.env.DB_NAME)
     const host = "http://localhost:8080";
     let fetchedUser: User;
 

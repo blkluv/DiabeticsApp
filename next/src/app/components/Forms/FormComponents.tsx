@@ -24,3 +24,9 @@ export function FormInput({className, ...props}: React.ComponentProps<"input">){
     <Input className={cn(className, "h-12 md:h-10 form-input")}{...props}/>
   )
 }
+
+export const Form = {
+  Group: FormGroup,
+  Label: FormLabel,
+  Input: FormInput,
+}

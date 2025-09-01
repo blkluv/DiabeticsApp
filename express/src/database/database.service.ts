@@ -8,7 +8,6 @@ export let db: mongoDB.Db;
 export async function connectToDatabase () {
    const client: mongoDB.MongoClient = new mongoDB.MongoClient(process.env.DB_CONN_STR ?? "");
    await client.connect();
-       
    db = client.db(process.env.DB_NAME);
   
    const mealCollection: mongoDB.Collection = db.collection("meals");
