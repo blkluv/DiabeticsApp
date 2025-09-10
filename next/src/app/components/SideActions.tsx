@@ -8,13 +8,14 @@ import {
 } from "@/components/ui/dialog"
 import { useState } from "react";
 import FoodForm from "./Forms/FoodForm";
+import MealForm from "./Forms/MealForm";
 
 enum FormType {
     Food,
     Meal
 }
 export default function SideActions() {
-    const [dialogOpen, setDialogOpen] = useState(true)
+    const [dialogOpen, setDialogOpen] = useState(false)
     const [formType, setFormType] = useState<FormType>(FormType.Food)
     function setForm(type:FormType){
         setFormType(type);
@@ -33,6 +34,8 @@ export default function SideActions() {
             <DialogTitle>{formType === FormType.Food ? "Create Food Item" : "Create Meal"}</DialogTitle>
             </DialogHeader>
             {formType === FormType.Food && <FoodForm/>}
+            {formType === FormType.Meal && <MealForm/>}
+
         </DialogContent>
     </Dialog>
     </>

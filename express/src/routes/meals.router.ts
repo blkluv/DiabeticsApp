@@ -1,7 +1,7 @@
 import express, { Request, Response } from "express";
 import { collections } from '../database/database.service';
 import { Food, Meal } from "../database/models/meals";
-import { ObjectId } from "mongoose";
+import { Collection } from "mongodb";
 
 export const mealsRouter = express.Router();
 
@@ -28,30 +28,36 @@ mealsRouter.get("/", async (_req: Request, res: Response) => {
         res.status(500).send(error instanceof Error ? error.message : 'An unknown error occurred');
     }
 });
-
+// Create new meal item
+mealsRouter.post("/", async (req, res) => {
+   const collection = collections.meals;
+   if(collection){
+        dbInsert(collection, req, res)
+   }
+});
 // Create new food item
-// Add a new document to the collection
 mealsRouter.post("/food/", async (req, res) => {
-    try{
-        if(!req.body){
+   const collection = collections.food;
+   if(collection){
+        dbInsert(collection, req, res)
+   }
+  
+});
 
-        }
-        let collection = await collections.food;
-        if(collection){
+// Add a new document to the collection
+async function dbInsert(collection: Collection, req: Request, res: Response){
+ if(!req.body){
+            res.status(400).send()
+    }
+    try{
+        
             let newDocument = req.body;
             // TODO: validation (sanitize input using validator library)
             
             let result = await collection.insertOne(newDocument);
             res.send(result).status(204);
-        }
-        else{
-            throw new Error("Collection was not found.")
-        }
     }
     catch(error){
        res.status(500).send(error instanceof Error ? error.message : 'An unknown error occurred');
     }
-  
-  
-  
-});
+}

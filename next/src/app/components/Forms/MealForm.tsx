@@ -2,7 +2,9 @@
 import axios from "axios";
 import { Form} from "./FormComponents";
 import { Button } from "@/components/ui/button";
-import { useContext, useState } from "react";
+import { SelectItem } from "@/components/ui/select";
+import { MealContext } from "../DbContext";
+import { useContext, useMemo } from "react";
 import { Meal } from "@/app/models/meals";
 
 class FormData{
@@ -15,9 +17,17 @@ class FormData{
     ){}
     
 }
-export default function FoodForm() {
-  
-    
+function GetUniqueFoodItems(meals: Meal[]){
+    const uniqueItems = new Set();
+    return meals.flatMap((meal) => meal.food_items)
+    .filter((item) => {
+        if(!uniqueItems.has(item._id)) return item;
+    })
+}
+export default function MealForm() {
+    const context = useContext(MealContext)
+    const foodItems = useMemo(() => GetUniqueFoodItems(context), [context])
+    console.log(foodItems[0]._id);
     async function submit(formData: FormData){
         const host = "http://localhost:8080";
 
@@ -42,20 +52,11 @@ export default function FoodForm() {
             <Form.Input type="text" name="name" id="name" required/>
         </Form.Group>
         <Form.Group>
-            <Form.Label htmlFor="brand">Brand</Form.Label>
-            <Form.Input type="text" name="brand" id="brand"/>
-        </Form.Group>
-        <Form.Group>
-            <Form.Label htmlFor="weight">Weight (g)<i className="text-primary">(required)</i></Form.Label>
-            <Form.Input type="number" name="weight" id="weight"/>
-        </Form.Group>
-        <Form.Group>
-            <Form.Label htmlFor="carbs">Carbs (g)<i className="text-primary">(required)</i></Form.Label>
-            <Form.Input type="number" name="carbs" id="carbs"/>
-        </Form.Group>
-        <Form.Group>
-            <Form.Label htmlFor="sugar">Sugar (g)</Form.Label>
-            <Form.Input type="number" name="sugar" id="sugar"/>
+            <Form.Select placeholder="Select">
+                {foodItems.map((item, index) => (
+                    <SelectItem value={item._id?.toString() ?? "null"} key={item._id?.toString() ?? index}>{item.food_name}</SelectItem>
+                ))}
+            </Form.Select>
         </Form.Group>
         <Form.Group>
             <Button type="submit" className="text-2xl md:text-base h-12 md:h-10">

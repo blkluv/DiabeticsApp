@@ -3,13 +3,13 @@
 import { useEffect, useState } from "react";
 import PageTabs from "./components/PageTabs";
 import axios from 'axios';
-import { Meal, Total } from "./models/meals";
+import { Food, Meal, Total } from "./models/meals";
 import MealTable from "./components/Meals/MealTable";
 import TotalComponent from "./components/Total";
 import { User } from "./models/user";
 import { FaBowlFood , FaBurger} from "react-icons/fa6";
 import { Button } from "@/components/ui/button";
-import { UserProvider } from "./components/UserContext";
+import { DbDataProvider } from "./components/DbContext";
 import {
   Dialog,
   DialogTrigger,
@@ -24,7 +24,6 @@ export default function Home() {
   const [total, setTotal] = useState<Total>({carbs: 0, insulin: 0})
   const [user, setUser] = useState<User>({carb_ratio: 0})
 
-  
 
  // Get meals and user data, applying carbratio to meals
   useEffect(() => {
@@ -66,7 +65,7 @@ export default function Home() {
   //
   return (
     <div className="font-sans container my-6 mx-30 ">
-      <UserProvider user={user}>
+      <DbDataProvider user={user} meals={meals}>
         <PageTabs id={1}/>
         <div className="m-32">
           <div className="mb-10">
@@ -79,7 +78,7 @@ export default function Home() {
         </div>
         <SideActions/>
         <TotalComponent total={total} clearTotal={clearTotal}/>
-        </UserProvider>
+        </DbDataProvider>
     </div>
   );
 }
